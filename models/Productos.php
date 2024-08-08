@@ -29,7 +29,7 @@ class Productos{
             $con = new ClaseConectar();
             $con = $con->conectarBaseDatos();
             $cadena = "INSERT INTO `productos`( `Codigo_Barras`, `Nombre_Producto`, `Graba_IVA`) 
-            VALUES ('$Codigo_Barras','$Nombre_Producto','$Graba_IVA')";
+            VALUES ('$Codigo_Barras','$Nombre_Producto',$Graba_IVA)";
             if (mysqli_query($con, $cadena)) {
                 return $con->insert_id;
             } else {
@@ -46,8 +46,8 @@ class Productos{
         try {
             $con = new ClaseConectar();
             $con = $con->conectarBaseDatos();
-            $cadena = "UPDATE `productos` SET `Codigo_Barras`='$Codigo_Barras',`Nombre_Producto`='$Nombre_Producto',`Graba_IVA`='$Graba_IVA']' 
-            WHERE `idProductos`='$idProductos'";
+            $cadena = "UPDATE `productos` SET `Codigo_Barras`='$Codigo_Barras',`Nombre_Producto`='$Nombre_Producto',`Graba_IVA`=$Graba_IVA 
+            WHERE `idProductos`= $idProductos";
             if (mysqli_query($con, $cadena)) {
                 return $idProductos;
             } else {
@@ -65,7 +65,7 @@ class Productos{
         try {
             $con = new ClaseConectar();
             $con = $con->conectarBaseDatos();
-            $cadena = "DELETE FROM `productos` WHERE `idProductos`='$idProductos'";
+            $cadena = "DELETE FROM `productos` WHERE `idProductos`=$idProductos";
             if (mysqli_query($con, $cadena)) {
                 return 1;
             } else {

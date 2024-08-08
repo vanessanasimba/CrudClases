@@ -28,7 +28,7 @@ class Unidad_Medida{
         try {
             $con = new ClaseConectar();
             $con = $con->conectarBaseDatos();
-            $cadena = "INSERT INTO `unidad_medida`(`Detalle`, `Tipo`) VALUES ('$Detalle','$Tipo')";
+            $cadena = "INSERT INTO `unidad_medida`(`Detalle`, `Tipo`) VALUES ('$Detalle',$Tipo)";
             if (mysqli_query($con, $cadena)) {
                 return $con->insert_id;
             } else {
@@ -45,7 +45,7 @@ class Unidad_Medida{
         try {
             $con = new ClaseConectar();
             $con = $con->conectarBaseDatos();
-            $cadena = "UPDATE `unidad_medida` SET `Detalle`='$Detalle',`Tipo`='$Tipo' WHERE `idUnidad_Medida`='$idUnidad_Medida'";
+            $cadena = "UPDATE `unidad_medida` SET `Detalle`='$Detalle',`Tipo`=$Tipo WHERE `idUnidad_Medida`=$idUnidad_Medida";
             if (mysqli_query($con, $cadena)) {
                 return $idUnidad_Medida;
             } else {
@@ -63,7 +63,7 @@ class Unidad_Medida{
         try {
             $con = new ClaseConectar();
             $con = $con->conectarBaseDatos();
-            $cadena = "DELETE FROM `unidad_medida` WHERE `idUnidad_Medida`='$idUnidad_Medida'";
+            $cadena = "DELETE FROM `unidad_medida` WHERE `idUnidad_Medida`=$idUnidad_Medida";
             if (mysqli_query($con, $cadena)) {
                 return 1;
             } else {
