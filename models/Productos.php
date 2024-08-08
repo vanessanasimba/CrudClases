@@ -1,34 +1,35 @@
 <?php 
-//TODO: model proveedores
+//TODO: model productos
 require_once('../config/config.php');
 error_reporting(0);
-class Proveedores{
+class Productos{
     public function todos() //select * from provedores
     {
         $con = new ClaseConectar();
         $con = $con->conectarBaseDatos();
-        $cadena = "SELECT * FROM `proveedores`";
+        $cadena = "SELECT * FROM `productos`";
         $datos = mysqli_query($con, $cadena);
         $con->close();
         return $datos;
     }
 
-    public function uno($idProveedores) //select * from provedores where id = $id
+    public function uno($idProductos) //select * from provedores where id = $id
     {
         $con = new ClaseConectar();
         $con = $con->conectarBaseDatos();
-        $cadena = "SELECT * FROM `proveedores` WHERE `idProveedores`=$idProveedores";
+        $cadena = "SELECT * FROM `productos` WHERE `idProductos`=$idProductos";
         $datos = mysqli_query($con, $cadena);
         $con->close();
         return $datos;
     }
 
-    public function insertar($Nombre_Empresa, $Direccion, $Telefono, $Contacto_Empresa, $Teleofno_Contacto) //insert into provedores (nombre, direccion, telefono) values ($nombre, $direccion, $telefono)
+    public function insertar( $Codigo_Barras, $Nombre_Producto, $Graba_IVA) //insert into provedores (nombre, direccion, telefono) values ($nombre, $direccion, $telefono)
     {
         try {
             $con = new ClaseConectar();
             $con = $con->conectarBaseDatos();
-            $cadena = "INSERT INTO `proveedores` ( `Nombre_Empresa`, `Direccion`, `Telefono`, `Contacto_Empresa`, `Teleofno_Contacto`) VALUES ('$Nombre_Empresa','$Direccion','$Telefono','$Contacto_Empresa','$Teleofno_Contacto')";
+            $cadena = "INSERT INTO `productos`( `Codigo_Barras`, `Nombre_Producto`, `Graba_IVA`) 
+            VALUES ('$Codigo_Barras','$Nombre_Producto','$Graba_IVA')";
             if (mysqli_query($con, $cadena)) {
                 return $con->insert_id;
             } else {
@@ -40,14 +41,15 @@ class Proveedores{
             $con->close();
         }
     }
-    public function actualizar($idProveedores, $Nombre_Empresa, $Direccion, $Telefono, $Contacto_Empresa, $Teleofno_Contacto) //update provedores set nombre = $nombre, direccion = $direccion, telefono = $telefono where id = $id
+    public function actualizar($idProductos, $Codigo_Barras, $Nombre_Producto, $Graba_IVA) //update provedores set nombre = $nombre, direccion = $direccion, telefono = $telefono where id = $id
     {
         try {
             $con = new ClaseConectar();
             $con = $con->conectarBaseDatos();
-            $cadena = "UPDATE `proveedores` SET `Nombre_Empresa`='$Nombre_Empresa',`Direccion`='$Direccion',`Telefono`='$Telefono',`Contacto_Empresa`='$Contacto_Empresa',`Teleofno_Contacto`='$Teleofno_Contacto' WHERE `idProveedores` = $idProveedores";
+            $cadena = "UPDATE `productos` SET `Codigo_Barras`='$Codigo_Barras',`Nombre_Producto`='$Nombre_Producto',`Graba_IVA`='$Graba_IVA']' 
+            WHERE `idProductos`='$idProductos'";
             if (mysqli_query($con, $cadena)) {
-                return $idProveedores;
+                return $idProductos;
             } else {
                 return $con->error;
             }
@@ -57,12 +59,13 @@ class Proveedores{
             $con->close();
         }
     }
-    public function eliminar($idProveedores) //delete from provedores where id = $id
+
+    public function eliminar($idProductos) //delete from clientes where id = $id
     {
         try {
             $con = new ClaseConectar();
             $con = $con->conectarBaseDatos();
-            $cadena = "DELETE FROM `proveedores` WHERE `idProveedores`= $idProveedores";
+            $cadena = "DELETE FROM `productos` WHERE `idProductos`='$idProductos'";
             if (mysqli_query($con, $cadena)) {
                 return 1;
             } else {

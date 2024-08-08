@@ -1,34 +1,35 @@
 <?php 
-//TODO: model proveedores
+//TODO: model productos
 require_once('../config/config.php');
 error_reporting(0);
-class Proveedores{
+class Detalle_Factura{
     public function todos() //select * from provedores
     {
         $con = new ClaseConectar();
         $con = $con->conectarBaseDatos();
-        $cadena = "SELECT * FROM `proveedores`";
+        $cadena = "SELECT * FROM `detalle_factura`";
         $datos = mysqli_query($con, $cadena);
         $con->close();
         return $datos;
     }
 
-    public function uno($idProveedores) //select * from provedores where id = $id
+    public function uno($idDetalle_Factura) //select * from provedores where id = $id
     {
         $con = new ClaseConectar();
         $con = $con->conectarBaseDatos();
-        $cadena = "SELECT * FROM `proveedores` WHERE `idProveedores`=$idProveedores";
+        $cadena = "SELECT * FROM `detalle_factura` WHERE `idDetalle_Factura`=$idDetalle_Factura";
         $datos = mysqli_query($con, $cadena);
         $con->close();
         return $datos;
     }
 
-    public function insertar($Nombre_Empresa, $Direccion, $Telefono, $Contacto_Empresa, $Teleofno_Contacto) //insert into provedores (nombre, direccion, telefono) values ($nombre, $direccion, $telefono)
+    public function insertar($Cantidad, $Factura_idFactura, $Kardex_idKardex, $Precio_Unitario, $Sub_Total_item) //insert into provedores (nombre, direccion, telefono) values ($nombre, $direccion, $telefono)
     {
         try {
             $con = new ClaseConectar();
             $con = $con->conectarBaseDatos();
-            $cadena = "INSERT INTO `proveedores` ( `Nombre_Empresa`, `Direccion`, `Telefono`, `Contacto_Empresa`, `Teleofno_Contacto`) VALUES ('$Nombre_Empresa','$Direccion','$Telefono','$Contacto_Empresa','$Teleofno_Contacto')";
+            $cadena = "INSERT INTO `detalle_factura`(`Cantidad`, `Factura_idFactura`, `Kardex_idKardex`, `Precio_Unitario`, `Sub_Total_item`) 
+            VALUES ($Cantidad, $Factura_idFactura , $Kardex_idKardex, $Precio_Unitario,$Sub_Total_item)";
             if (mysqli_query($con, $cadena)) {
                 return $con->insert_id;
             } else {
@@ -40,14 +41,15 @@ class Proveedores{
             $con->close();
         }
     }
-    public function actualizar($idProveedores, $Nombre_Empresa, $Direccion, $Telefono, $Contacto_Empresa, $Teleofno_Contacto) //update provedores set nombre = $nombre, direccion = $direccion, telefono = $telefono where id = $id
+    public function actualizar($idDetalle_Factura, $Cantidad, $Factura_idFactura, $Kardex_idKardex, $Precio_Unitario, $Sub_Total_item) //update provedores set nombre = $nombre, direccion = $direccion, telefono = $telefono where id = $id
     {
         try {
             $con = new ClaseConectar();
             $con = $con->conectarBaseDatos();
-            $cadena = "UPDATE `proveedores` SET `Nombre_Empresa`='$Nombre_Empresa',`Direccion`='$Direccion',`Telefono`='$Telefono',`Contacto_Empresa`='$Contacto_Empresa',`Teleofno_Contacto`='$Teleofno_Contacto' WHERE `idProveedores` = $idProveedores";
+            $cadena = "UPDATE `detalle_factura` SET `Cantidad`= $Cantidad,`Factura_idFactura`=$Factura_idFactura,`Kardex_idKardex`=$Kardex_idKardex,`Precio_Unitario`=$Precio_Unitario,`Sub_Total_item`=$Sub_Total_item 
+            WHERE  `idDetalle_Factura`= $idDetalle_Factura";
             if (mysqli_query($con, $cadena)) {
-                return $idProveedores;
+                return $idDetalle_Factura;
             } else {
                 return $con->error;
             }
@@ -57,12 +59,13 @@ class Proveedores{
             $con->close();
         }
     }
-    public function eliminar($idProveedores) //delete from provedores where id = $id
+
+    public function eliminar($idDetalle_Factura) //delete from clientes where id = $id
     {
         try {
             $con = new ClaseConectar();
             $con = $con->conectarBaseDatos();
-            $cadena = "DELETE FROM `proveedores` WHERE `idProveedores`= $idProveedores";
+            $cadena = "DELETE FROM `detalle_factura` WHERE `idProductos`= $idDetalle_Factura";
             if (mysqli_query($con, $cadena)) {
                 return 1;
             } else {

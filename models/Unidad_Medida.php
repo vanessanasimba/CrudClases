@@ -1,34 +1,34 @@
 <?php 
-//TODO: model proveedores
+//TODO: model unidad_medida
 require_once('../config/config.php');
 error_reporting(0);
-class Proveedores{
-    public function todos() //select * from provedores
+class Unidad_Medida{
+    public function todos() //select * from unidad_medida
     {
         $con = new ClaseConectar();
         $con = $con->conectarBaseDatos();
-        $cadena = "SELECT * FROM `proveedores`";
+        $cadena = "SELECT * FROM `unidad_medida`";
         $datos = mysqli_query($con, $cadena);
         $con->close();
         return $datos;
     }
 
-    public function uno($idProveedores) //select * from provedores where id = $id
+    public function uno($idUnidad_Medida) //select * from unidad_medida where id = $id
     {
         $con = new ClaseConectar();
         $con = $con->conectarBaseDatos();
-        $cadena = "SELECT * FROM `proveedores` WHERE `idProveedores`=$idProveedores";
+        $cadena = "SELECT * FROM `unidad_medida` WHERE `idUnidad_Medida`=$idUnidad_Medida";
         $datos = mysqli_query($con, $cadena);
         $con->close();
         return $datos;
     }
 
-    public function insertar($Nombre_Empresa, $Direccion, $Telefono, $Contacto_Empresa, $Teleofno_Contacto) //insert into provedores (nombre, direccion, telefono) values ($nombre, $direccion, $telefono)
+    public function insertar($Detalle, $Tipo)
     {
         try {
             $con = new ClaseConectar();
             $con = $con->conectarBaseDatos();
-            $cadena = "INSERT INTO `proveedores` ( `Nombre_Empresa`, `Direccion`, `Telefono`, `Contacto_Empresa`, `Teleofno_Contacto`) VALUES ('$Nombre_Empresa','$Direccion','$Telefono','$Contacto_Empresa','$Teleofno_Contacto')";
+            $cadena = "INSERT INTO `unidad_medida`(`Detalle`, `Tipo`) VALUES ('$Detalle','$Tipo')";
             if (mysqli_query($con, $cadena)) {
                 return $con->insert_id;
             } else {
@@ -40,14 +40,14 @@ class Proveedores{
             $con->close();
         }
     }
-    public function actualizar($idProveedores, $Nombre_Empresa, $Direccion, $Telefono, $Contacto_Empresa, $Teleofno_Contacto) //update provedores set nombre = $nombre, direccion = $direccion, telefono = $telefono where id = $id
+    public function actualizar($idUnidad_Medida, $Detalle, $Tipo) 
     {
         try {
             $con = new ClaseConectar();
             $con = $con->conectarBaseDatos();
-            $cadena = "UPDATE `proveedores` SET `Nombre_Empresa`='$Nombre_Empresa',`Direccion`='$Direccion',`Telefono`='$Telefono',`Contacto_Empresa`='$Contacto_Empresa',`Teleofno_Contacto`='$Teleofno_Contacto' WHERE `idProveedores` = $idProveedores";
+            $cadena = "UPDATE `unidad_medida` SET `Detalle`='$Detalle',`Tipo`='$Tipo' WHERE `idUnidad_Medida`='$idUnidad_Medida'";
             if (mysqli_query($con, $cadena)) {
-                return $idProveedores;
+                return $idUnidad_Medida;
             } else {
                 return $con->error;
             }
@@ -57,12 +57,13 @@ class Proveedores{
             $con->close();
         }
     }
-    public function eliminar($idProveedores) //delete from provedores where id = $id
+    
+    public function eliminar($idUnidad_Medida) //delete from unidad medida where id = $id
     {
         try {
             $con = new ClaseConectar();
             $con = $con->conectarBaseDatos();
-            $cadena = "DELETE FROM `proveedores` WHERE `idProveedores`= $idProveedores";
+            $cadena = "DELETE FROM `unidad_medida` WHERE `idUnidad_Medida`='$idUnidad_Medida'";
             if (mysqli_query($con, $cadena)) {
                 return 1;
             } else {
