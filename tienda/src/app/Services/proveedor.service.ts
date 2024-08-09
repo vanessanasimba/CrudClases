@@ -7,13 +7,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProveedorService {
-  apiurl='http://localhost:8080/NasimbaVanessa_Tarea2/controller/proveedoresCtrl.php?op=';
+  apiurl='/NasimbaVanessa_Tarea2/controller/proveedoresCtrl.php?op=';
 
 
   constructor(private lector: HttpClient) { }
 
   todos():Observable<Iproveedor[]>{
-
     return this.lector.get<Iproveedor[]>(this.apiurl + 'todos');
   }
 }

@@ -20,7 +20,6 @@ export class AppComponent {
   ngOnInit() {
     this.ServicioProveedor.todos().subscribe(
       (data)=>{
-        console.log(data);
         this.ProveedoresList = data;
       }
     );
