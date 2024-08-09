@@ -7,9 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProveedorService {
-  apiurl='/NasimbaVanessa_Tarea2/controller/proveedoresCtrl.php?op=';
-
-
+  apiurl='http://localhost:8080/CrudClases/controller/proveedoresCtrl.php?op=';
+  
   constructor(private lector: HttpClient) { }
 
   todos():Observable<Iproveedor[]>{
