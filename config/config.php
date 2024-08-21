@@ -6,7 +6,7 @@ class ClaseConectar{
     protected $db;
     private $host = "localhost";
     private $usuario = "root";
-    private $pass = "vane1712";
+    private $pass = "";
     private $base = "sexto";
 
     public function conectarBaseDatos(){

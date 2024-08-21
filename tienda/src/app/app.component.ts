@@ -16,13 +16,20 @@ export class AppComponent {
   ProveedoresList: Iproveedor[]= [];
 
 
-  constructor(private ServicioProveedor:ProveedorService){}
+  constructor(private ServicioProveedor: ProveedorService) {}
   ngOnInit() {
-    this.ServicioProveedor.todos().subscribe(
-      (data)=>{
-        this.ProveedoresList = data;
-      }
-    );
+    this.cargatabla();
+  }
 
+  cargatabla() {
+    this.ServicioProveedor.todos().subscribe((data) => {
+      this.ProveedoresList = data;
+    });
+  }
+  eliminar(idProveedor: number) {
+    this.ServicioProveedor.eliminar(idProveedor).subscribe((data) => {
+      console.log(data);
+      this.cargatabla();
+    });
   }
 }
