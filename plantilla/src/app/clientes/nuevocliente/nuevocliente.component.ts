@@ -56,7 +56,6 @@ export class NuevoclienteComponent {
             text: res.mensaje,
             icon: 'success'
           });
-
           this.navegacion.navigate(['/clientes']);
         });
       }
