@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ProveedorService } from './Services/proveedor.service';
-import { Iproveedor } from './Interfaces/iproveedor';
+import { Iproveedor } from '../../../plantilla/src/app/Interfaces/iproveedor';
 
 @Component({
   selector: 'app-root',

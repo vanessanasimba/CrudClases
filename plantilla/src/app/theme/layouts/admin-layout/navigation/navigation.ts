@@ -36,6 +36,7 @@ export const NavigationItems: NavigationItem[] = [
       }
     ]
   },
+  /*
   {
     id: 'authentication',
     title: 'Authentication',
@@ -63,27 +64,27 @@ export const NavigationItems: NavigationItem[] = [
         breadcrumbs: false
       }
     ]
-  },
+  }, */
   {
-    id: 'utilities',
-    title: 'UI Components',
+    id: 'Componentes',
+    title: 'Componentes',
     type: 'group',
     icon: 'icon-navigation',
     children: [
       {
-        id: 'typography',
-        title: 'Typography',
+        id: 'proveedores',
+        title: 'Proveedores',
         type: 'item',
         classes: 'nav-item',
-        url: '/typography',
-        icon: 'font-size'
+        url: '/proveedores',
+        icon: 'UserOutlined'
       },
       {
-        id: 'color',
-        title: 'Colors',
+        id: 'clientes',
+        title: 'Clientes',
         type: 'item',
         classes: 'nav-item',
-        url: '/color',
+        url: '/clientes',
         icon: 'bg-colors'
       },
       {
