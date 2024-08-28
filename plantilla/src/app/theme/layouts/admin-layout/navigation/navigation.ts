@@ -77,7 +77,7 @@ export const NavigationItems: NavigationItem[] = [
         type: 'item',
         classes: 'nav-item',
         url: '/proveedores',
-        icon: 'UserOutlined'
+        icon: 'bg-colors'
       },
       {
         id: 'clientes',
@@ -85,6 +85,14 @@ export const NavigationItems: NavigationItem[] = [
         type: 'item',
         classes: 'nav-item',
         url: '/clientes',
+        icon: 'bg-colors'
+      },
+      {
+        id: 'facturas',
+        title: 'Facturas',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/facturas',
         icon: 'bg-colors'
       },
       {

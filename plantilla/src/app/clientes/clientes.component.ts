@@ -31,7 +31,7 @@ export class ClientesComponent {
       text: 'Esta seguro que desea eliminar el cliente!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#d33',
+      confirmButtonColor: '#f00',
       cancelButtonColor: '#3085d6',
       confirmButtonText: 'Emliminar Cliente'
     }).then((result) => {
