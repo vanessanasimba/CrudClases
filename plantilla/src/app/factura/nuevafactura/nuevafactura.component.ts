@@ -61,6 +61,7 @@ export class NuevafacturaComponent implements OnInit {
         this.frm_factura.controls['Valor_IVA'].setValue(unafactura.Valor_IVA);  
         this.frm_factura.controls['Clientes_idClientes'].setValue(unafactura.Clientes_idClientes);
         this.titulo = 'Editar Factura';
+        this.calculos();
       });
     }
   }
@@ -75,12 +76,22 @@ export class NuevafacturaComponent implements OnInit {
     };
     
 
-    this.facturaService.insertar(factura).subscribe((respuesta) => {
-      if (parseInt(respuesta) > 0) {
-        alert('Factura grabada');
-        this.navegacion.navigate(['/facturas']);
-      }
-    });
+    if (this.idFactura == 0 || isNaN(this.idFactura)){
+      this.facturaService.insertar(factura).subscribe((respuesta) => {
+        if (parseInt(respuesta) > 0) {
+          alert('Factura grabada');
+          this.navegacion.navigate(['/facturas']);
+        }
+      });
+    }else{
+      factura.idFactura = this.idFactura;
+      this.facturaService.actualizar(factura).subscribe((respuesta) => {
+        if (parseInt(respuesta) > 0) {
+          alert('Factura actualizada');
+          this.navegacion.navigate(['/facturas']);
+        }
+      });
+    }
   }
   calculos() {
     let sub_total = this.frm_factura.get('Sub_total')?.value;
