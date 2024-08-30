@@ -72,18 +72,22 @@ switch ($_GET["op"]) {
         echo json_encode($datos);
         break;
 
-    case 'login':
-        if (!isset($_POST["Nombre_Usuario"]) || !isset($_POST["Contrasenia"])) {
-            echo json_encode(["error" => "Missing required parameters."]);
-            exit();
-        }
-        $nombreUsuario = $_POST["Nombre_Usuario"];
-        $contrasenia = $_POST["Contrasenia"];
-        $result = $usuario->login($nombreUsuario, $contrasenia);
-        if ($result) {
-            echo json_encode(["success" => true]);
-        } else {
-            echo json_encode(["success" => false, "error" => "Invalid credentials."]);
-        }
+        case 'login':
+            if (!isset($_POST["Nombre_Usuario"]) || !isset($_POST["Contrasenia"])) {
+                echo json_encode(["error" => "Missing required parameters."]);
+                exit();
+            }
+            $nombreUsuario = $_POST["Nombre_Usuario"];
+            $contrasenia = $_POST["Contrasenia"];
+            $result = $usuario->login($nombreUsuario, $contrasenia);
+            if ($result) {
+                echo json_encode($result);
+            } else {
+                echo json_encode(["success" => false, "error" => "Invalid credentials."]);
+            }
+            break;
+
+        default:
         break;
+    
 }

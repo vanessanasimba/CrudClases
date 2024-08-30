@@ -7,6 +7,7 @@ import { AdminComponent } from './theme/layouts/admin-layout/admin-layout.compon
 import { GuestComponent } from './theme/layouts/guest/guest.component';
 import { ProveedoresComponent } from './proveedores/proveedores.component';
 import { NuevoproveedorComponent } from './proveedores/nuevoproveedor/nuevoproveedor.component';
+import { usuariosGuardGuard } from './Guards/usuarios-guard.guard';
 
 const routes: Routes = [
   {
@@ -36,39 +37,47 @@ const routes: Routes = [
       },
       {
         path: 'proveedores',
-        loadComponent: () => import('./proveedores/proveedores.component').then((m) => m.ProveedoresComponent)
+        loadComponent: () => import('./proveedores/proveedores.component').then((m) => m.ProveedoresComponent),
+        canActivate: [usuariosGuardGuard]
       },
       {
         path: 'nuevoproveedor',
-        loadComponent: () => import('./proveedores/nuevoproveedor/nuevoproveedor.component').then((m) => m.NuevoproveedorComponent)
+        loadComponent: () => import('./proveedores/nuevoproveedor/nuevoproveedor.component').then((m) => m.NuevoproveedorComponent),
+        canActivate: [usuariosGuardGuard]
       },
       {
         path: 'editarproveedor/:idproveedor',
-        loadComponent: () => import('./proveedores/nuevoproveedor/nuevoproveedor.component').then((m) => m.NuevoproveedorComponent)
+        loadComponent: () => import('./proveedores/nuevoproveedor/nuevoproveedor.component').then((m) => m.NuevoproveedorComponent),
+        canActivate: [usuariosGuardGuard]
       },
       {
         path: 'clientes',
-        loadComponent: () => import('./clientes/clientes.component').then((m) => m.ClientesComponent)
+        loadComponent: () => import('./clientes/clientes.component').then((m) => m.ClientesComponent),
+        canActivate: [usuariosGuardGuard]
       },
       {
         path: 'nuevocliente',
-        loadComponent: () => import('./clientes/nuevocliente/nuevocliente.component').then((m) => m.NuevoclienteComponent)
+        loadComponent: () => import('./clientes/nuevocliente/nuevocliente.component').then((m) => m.NuevoclienteComponent),
+        canActivate: [usuariosGuardGuard]
       },
       {
         path: 'editarcliente/:idCliente',
-        loadComponent: () => import('./clientes/nuevocliente/nuevocliente.component').then((m) => m.NuevoclienteComponent)
+        loadComponent: () => import('./clientes/nuevocliente/nuevocliente.component').then((m) => m.NuevoclienteComponent),
+        canActivate: [usuariosGuardGuard]
       },
       {
         path: 'facturas',
-        loadComponent: () => import('./factura/factura.component').then((m) => m.FacturaComponent)
+        loadComponent: () => import('./factura/factura.component').then((m) => m.FacturaComponent),
       },
       {
         path: 'nuevofactura',
-        loadComponent: () => import('./factura/nuevafactura/nuevafactura.component').then((m) => m.NuevafacturaComponent)
+        loadComponent: () => import('./factura/nuevafactura/nuevafactura.component').then((m) => m.NuevafacturaComponent),
+        canActivate: [usuariosGuardGuard]
       },
       {
         path: 'editarfactura/:idFactura',
-        loadComponent: () => import('./factura/nuevafactura/nuevafactura.component').then((m) => m.NuevafacturaComponent)
+        loadComponent: () => import('./factura/nuevafactura/nuevafactura.component').then((m) => m.NuevafacturaComponent),
+        canActivate: [usuariosGuardGuard]
       }
     ]
   },
