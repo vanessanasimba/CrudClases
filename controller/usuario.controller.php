@@ -73,11 +73,11 @@ switch ($_GET["op"]) {
         break;
 
         case 'login':
-            if (!isset($_POST["Nombre_Usuario"]) || !isset($_POST["Contrasenia"])) {
+            if (!isset($_POST["Nombre_usuario"]) || !isset($_POST["Contrasenia"])) {
                 echo json_encode(["error" => "Missing required parameters."]);
                 exit();
             }
-            $nombreUsuario = $_POST["Nombre_Usuario"];
+            $nombreUsuario = $_POST["Nombre_usuario"];
             $contrasenia = $_POST["Contrasenia"];
             $result = $usuario->login($nombreUsuario, $contrasenia);
             if ($result) {

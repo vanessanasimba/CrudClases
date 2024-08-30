@@ -77,7 +77,7 @@ class UsuarioModel {
         $datos = mysqli_query($con, $sql);
         if ($datos && mysqli_num_rows($datos) > 0) {
             $usuario = mysqli_fetch_assoc($datos);
-            if (password_verify(md5($Contrasenia), $usuario['Contrasenia'])) {
+            if (md5($Contrasenia)== $usuario['Contrasenia']) {
                 return $usuario;
             }else {
                 return false;

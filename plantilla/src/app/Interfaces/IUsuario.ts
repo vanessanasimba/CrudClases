@@ -1,7 +1,7 @@
 export interface IUsuario {
     idUsuarios?: number; //opcional
-    nombreUsuario: string;
-    contrasenia: string;
-    estado?: number;
-    rolesIdRoles?: number;
+    Nombre_usuario: string;
+    Contrasenia: string;
+    Estado?: number;
+    Roles_idRoles?: number;
 }

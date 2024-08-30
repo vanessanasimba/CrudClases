@@ -17,12 +17,16 @@ export class UsuariosService {
   ) { }
 
   login(usuario:IUsuario){
-    return this.lector.post<IUsuario>(this.apiurl + 'login', usuario)
-    .subscribe((respuesta)=>{
+    let formData = new FormData();
+    formData.append('Nombre_usuario', usuario.Nombre_usuario);
+    formData.append('Contrasenia', usuario.Contrasenia);
+    console.log(usuario);
+    return this.lector.post<IUsuario>(this.apiurl + 'login', formData).subscribe((respuesta)=>{
       if (respuesta) {
-        sessionStorage.setItem('nombreUsuario', respuesta.nombreUsuario);
-        sessionStorage.setItem('rolesIdRoles', respuesta.rolesIdRoles.toString());
-        localStorage.setItem('rolesIdRoles', respuesta.rolesIdRoles.toString());
+        console.log(respuesta);
+        sessionStorage.setItem('nombreUsuario', respuesta.Nombre_usuario);
+        sessionStorage.setItem('rolesIdRoles', respuesta.Roles_idRoles.toString());
+        localStorage.setItem('rolesIdRoles', respuesta.Roles_idRoles.toString());
         this.loggedIn.next(true);
         this.navegacion.navigate(['/dashboard/default']);
       }
