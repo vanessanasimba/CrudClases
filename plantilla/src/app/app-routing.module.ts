@@ -18,10 +18,12 @@ const routes: Routes = [
         path: '',
         redirectTo: '/dashboard/default',
         pathMatch: 'full'
+
       },
       {
         path: 'dashboard/default',
-        loadComponent: () => import('./demo/default/dashboard/dashboard.component').then((c) => c.DefaultComponent)
+        loadComponent: () => import('./demo/default/dashboard/dashboard.component').then((c) => c.DefaultComponent),
+        canActivate: [usuariosGuardGuard]
       },
       {
         path: 'typography',
@@ -77,6 +79,23 @@ const routes: Routes = [
       {
         path: 'editarfactura/:idFactura',
         loadComponent: () => import('./factura/nuevafactura/nuevafactura.component').then((m) => m.NuevafacturaComponent),
+        canActivate: [usuariosGuardGuard]
+      },
+      {
+        path: 'unidadmedida',
+        loadComponent: () => import('./unidadmedida/unidadmedida.component').then((m) => m.UnidadmedidaComponent),
+        canActivate: [usuariosGuardGuard]
+      },
+      {
+        path: 'nuevaunidadmedida',
+        loadComponent: () =>
+          import('./unidadmedida/nuevaunidadmedida/nuevaunidadmedida.component').then((m) => m.NuevaunidadmedidaComponent),
+        canActivate: [usuariosGuardGuard]
+      },
+      {
+        path: 'editarunidadmedida/:id',
+        loadComponent: () =>
+          import('./unidadmedida/nuevaunidadmedida/nuevaunidadmedida.component').then((m) => m.NuevaunidadmedidaComponent),
         canActivate: [usuariosGuardGuard]
       }
     ]

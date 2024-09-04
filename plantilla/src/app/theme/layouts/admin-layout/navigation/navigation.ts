@@ -96,6 +96,14 @@ export const NavigationItems: NavigationItem[] = [
         icon: 'bg-colors'
       },
       {
+        id: 'unidadmedida',
+        title: 'Unidad Medida',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/unidadmedida',
+        icon: 'bg-colors'
+      },
+      {
         id: 'tabler',
         title: 'Tabler',
         type: 'item',

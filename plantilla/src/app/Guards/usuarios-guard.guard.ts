@@ -15,6 +15,7 @@ export class usuariosGuardGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
     return this.usurioService.isLoggedIn().pipe(
       map((loggedIn) => {
+        console.log(loggedIn);
         if (!loggedIn) {
           this.navgacion.navigate(['/login']);
           return false;

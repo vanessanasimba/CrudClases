@@ -14,7 +14,9 @@ export class UsuariosService {
   constructor(
     private lector: HttpClient,
     private navegacion:Router
-  ) { }
+  ) { 
+    this.checkLoginStatus();
+  }
 
   login(usuario:IUsuario){
     let formData = new FormData();
@@ -44,11 +46,9 @@ export class UsuariosService {
   }
 
   checkLoginStatus() {
-    const usuario = sessionStorage.getItem('nombreUsuario');
-    if (usuario ) {
+    const usuario = sessionStorage.getItem('rolesIdRoles');
+    if (parseInt(usuario) > 0) {
       this.loggedIn.next(true);
-    } else {
-      this.loggedIn.next(false);
     }
   }
 

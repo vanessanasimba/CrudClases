@@ -1,9 +1,10 @@
-<?php 
-//TODO: model unidad_medida
+<?php
+// Modelo de UnidadDeMedida
 require_once('../config/config.php');
-error_reporting(0);
-class Unidad_Medida{
-    public function todos() //select * from unidad_medida
+
+class UnidadDeMedida
+{
+    public function todos() // select * from unidad_medida
     {
         $con = new ClaseConectar();
         $con = $con->conectarBaseDatos();
@@ -13,59 +14,25 @@ class Unidad_Medida{
         return $datos;
     }
 
-    public function uno($idUnidad_Medida) //select * from unidad_medida where id = $id
+    public function uno($idUnidad) // select * from unidad_medida where id = $idUnidad
     {
         $con = new ClaseConectar();
         $con = $con->conectarBaseDatos();
-        $cadena = "SELECT * FROM `unidad_medida` WHERE `idUnidad_Medida`=$idUnidad_Medida";
+        $cadena = "SELECT * FROM `unidad_medida` WHERE `idUnidad_Medida` = $idUnidad";
         $datos = mysqli_query($con, $cadena);
         $con->close();
         return $datos;
     }
 
-    public function insertar($Detalle, $Tipo)
+    public function insertar($Descripcion, $Tipo) // insert into unidad_medida (...) values (...)
     {
         try {
             $con = new ClaseConectar();
             $con = $con->conectarBaseDatos();
-            $cadena = "INSERT INTO `unidad_medida`(`Detalle`, `Tipo`) VALUES ('$Detalle',$Tipo)";
+            $cadena = "INSERT INTO `unidad_medida`( `Detalle`, `Tipo`) 
+                       VALUES ( '$Descripcion', '$Tipo')";
             if (mysqli_query($con, $cadena)) {
-                return $con->insert_id;
-            } else {
-                return $con->error;
-            }
-        } catch (Exception $th) {
-            return $th->getMessage();
-        } finally {
-            $con->close();
-        }
-    }
-    public function actualizar($idUnidad_Medida, $Detalle, $Tipo) 
-    {
-        try {
-            $con = new ClaseConectar();
-            $con = $con->conectarBaseDatos();
-            $cadena = "UPDATE `unidad_medida` SET `Detalle`='$Detalle',`Tipo`=$Tipo WHERE `idUnidad_Medida`=$idUnidad_Medida";
-            if (mysqli_query($con, $cadena)) {
-                return $idUnidad_Medida;
-            } else {
-                return $con->error;
-            }
-        } catch (Exception $th) {
-            return $th->getMessage();
-        } finally {
-            $con->close();
-        }
-    }
-    
-    public function eliminar($idUnidad_Medida) //delete from unidad medida where id = $id
-    {
-        try {
-            $con = new ClaseConectar();
-            $con = $con->conectarBaseDatos();
-            $cadena = "DELETE FROM `unidad_medida` WHERE `idUnidad_Medida`=$idUnidad_Medida";
-            if (mysqli_query($con, $cadena)) {
-                return 1;
+                return $con->insert_id; // Retorna el ID insertado
             } else {
                 return $con->error;
             }
@@ -76,7 +43,43 @@ class Unidad_Medida{
         }
     }
 
+    public function actualizar($idUnidad,  $Descripcion, $Tipo) // update unidad_medida set ... where id = $idUnidad
+    {
+        try {
+            $con = new ClaseConectar();
+            $con = $con->conectarBaseDatos();
+            $cadena = "UPDATE `unidad_medida` SET 
+                      
+                       `Detalle`='$Descripcion',
+                       `Tipo`='$Tipo'
+                       WHERE `idUnidad_Medida` = $idUnidad";
+            if (mysqli_query($con, $cadena)) {
+                return $idUnidad; // Retorna el ID actualizado
+            } else {
+                return $con->error;
+            }
+        } catch (Exception $th) {
+            return $th->getMessage();
+        } finally {
+            $con->close();
+        }
+    }
 
+    public function eliminar($idUnidad) // delete from unidad_medida where id = $idUnidad
+    {
+        try {
+            $con = new ClaseConectar();
+            $con = $con->conectarBaseDatos();
+            $cadena = "DELETE FROM `unidad_medida` WHERE `idUnidad_Medida`= $idUnidad";
+            if (mysqli_query($con, $cadena)) {
+                return 1; // Éxito
+            } else {
+                return $con->error;
+            }
+        } catch (Exception $th) {
+            return $th->getMessage();
+        } finally {
+            $con->close();
+        }
+    }
 }
-
-?>
